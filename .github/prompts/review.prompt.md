@@ -69,7 +69,7 @@ git diff
 
 ### Read Project Rules
 
-- Read `CLAUDE.md` for project conventions
+- Read `AGENTS.md` for project conventions
 - Understand the vertical slice architecture patterns
 
 ### Understand Intent

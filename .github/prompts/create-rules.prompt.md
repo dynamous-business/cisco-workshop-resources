@@ -52,7 +52,7 @@ Look at root configuration files:
 ```
 pyproject.toml     → dependencies, scripts, tool config
 alembic.ini        → database migration settings
-CLAUDE.md          → AI coding conventions
+AGENTS.md          → AI coding conventions
 .env.example       → environment variables
 Dockerfile         → container setup
 docker-compose.yml → service orchestration

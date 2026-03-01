@@ -55,6 +55,7 @@ Prompt files live in `.github/prompts/` and become slash commands in Copilot Cha
 | Prompt | Description |
 |--------|-------------|
 | [`/prd`](./.github/prompts/prd.prompt.md) | Create a Product Requirements Document |
+| [`/create-prd`](./.github/prompts/create-prd.prompt.md) | Create a comprehensive PRD from conversation context |
 | [`/plan`](./.github/prompts/plan.prompt.md) | Generate an implementation plan |
 | [`/implement`](./.github/prompts/implement.prompt.md) | Execute a plan with validation loops |
 | [`/validate`](./.github/prompts/validate.prompt.md) | Run linter, type checker, and tests |

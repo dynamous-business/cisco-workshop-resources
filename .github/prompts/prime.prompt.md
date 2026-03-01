@@ -22,7 +22,7 @@ Build comprehensive understanding of this codebase by analyzing structure and ke
 2. Study the core infrastructure (`app/core/`)
 3. Study shared utilities (`app/shared/`)
 4. Study any feature directories under `app/`
-5. Review `CLAUDE.md` for project conventions
+5. Review `AGENTS.md` for project conventions
 6. Check `pyproject.toml` for dependencies and configuration
 7. Check recent commits with `git log --oneline -5`
 
