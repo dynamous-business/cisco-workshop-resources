@@ -21,7 +21,7 @@ This workshop teaches you how to build that system. You'll create an "AI Layer" 
 1. **Baseline** - Apply your current AI workflow to a brownfield development task
 2. **PIV Loop** - Apply planning → implementing → validating to the same task
 3. **Build a Prompt** - Create your own reusable prompt file for something you do daily/weekly
-4. **AI-Optimized** - Build on top of an AI-optimized codebase (Next.js)
+4. **AI-Optimized** - Build on top of an AI-optimized codebase (Python/FastAPI)
 
 ## Contents
 
@@ -59,7 +59,7 @@ Prompt files live in `.github/prompts/` and become slash commands in Copilot Cha
 | [`/implement`](./.github/prompts/implement.prompt.md) | Execute a plan with validation loops |
 | [`/validate`](./.github/prompts/validate.prompt.md) | Run linter, type checker, and tests |
 | [`/review`](./.github/prompts/review.prompt.md) | Code review workflow |
-| [`/create-rules`](./.github/prompts/create-rules.prompt.md) | Generate copilot-instructions.md from codebase analysis |
+| [`/create-rules`](./.github/prompts/create-rules.prompt.md) | Generate AGENTS.md from codebase analysis |
 | [`/prime`](./.github/prompts/prime.prompt.md) | Load full project context |
 | [`/prime-client`](./.github/prompts/prime-client.prompt.md) | Load frontend context |
 | [`/prime-server`](./.github/prompts/prime-server.prompt.md) | Load backend context |
@@ -109,7 +109,7 @@ npx agent-browser@latest open example.com
 ### Setup
 
 1. **Copy the `.github/` folder** into your project root
-2. **Generate custom instructions**: Run `/create-rules` in Copilot Chat to auto-generate a `copilot-instructions.md` from your codebase
+2. **Generate custom instructions**: Run `/create-rules` in Copilot Chat to auto-generate an `AGENTS.md` from your codebase
 3. **Customize prompt files**: Edit prompts in `.github/prompts/` to match your project's build/test commands
 
 ### The PIV Loop Workflow

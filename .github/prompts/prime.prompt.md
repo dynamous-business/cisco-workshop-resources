@@ -18,21 +18,23 @@ Build comprehensive understanding of this codebase by analyzing structure and ke
 
 ## Process
 
-1. Study the client source (`client/src/`)
-2. Study the server source (`server/src/`)
-3. Study the shared types (`shared/types.ts`)
-4. Check recent commits with `git log --oneline -5`
+1. Study the application entry point (`app/main.py`)
+2. Study the core infrastructure (`app/core/`)
+3. Study shared utilities (`app/shared/`)
+4. Study any feature directories under `app/`
+5. Review `CLAUDE.md` for project conventions
+6. Check `pyproject.toml` for dependencies and configuration
+7. Check recent commits with `git log --oneline -5`
 
 ## Output
 
 Produce a scannable summary of what you learned:
 
 - **Project Purpose**: One sentence
-- **Tech Stack**
-  - Frontend: framework, UI library, state management
-  - Backend: framework, database, validation
+- **Tech Stack**: FastAPI, SQLAlchemy async, PostgreSQL, structlog, Pydantic
+- **Architecture**: Vertical slice — features own models, schemas, routes, services
 - **Data Model**: Core entities
-- **Key Patterns**: Database, API, state management patterns
+- **Key Patterns**: Async database, structured logging, type safety (mypy + pyright)
 - **Current State**: Recent commits, current branch
 
 Use bullet points. Keep it concise.

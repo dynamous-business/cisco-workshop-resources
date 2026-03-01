@@ -24,7 +24,7 @@ tools:
 Perform a thorough code review:
 1. **Understand** what you're reviewing and its purpose
 2. **Check** the code against project patterns
-3. **Run** validation (type-check, lint, tests)
+3. **Run** validation (type checkers, lint, tests)
 4. **Identify** issues by severity
 5. **Report** findings
 
@@ -40,8 +40,8 @@ Perform a thorough code review:
 |------------|---------|--------|
 | PR number | `123`, `#123` | Fetch PR diff with `gh pr diff 123` |
 | PR URL | `github.com/.../pull/123` | Extract number, fetch PR diff |
-| File path | `src/api/flags.ts` | Review single file |
-| Folder path | `server/src/` | Review all files in folder |
+| File path | `app/core/health.py` | Review single file |
+| Folder path | `app/core/` | Review all files in folder |
 | Blank | (none) | Review unstaged git changes |
 
 ### Get Review Target
@@ -54,7 +54,7 @@ gh pr diff {NUMBER}
 
 **For file/folder:**
 ```bash
-find {path} -name "*.ts" -o -name "*.tsx" | grep -v node_modules
+find {path} -name "*.py" | grep -v __pycache__
 ```
 
 **For blank (unstaged changes):**
@@ -69,8 +69,8 @@ git diff
 
 ### Read Project Rules
 
-- Read `copilot-instructions.md` for project conventions
-- Understand the patterns in the codebase
+- Read `CLAUDE.md` for project conventions
+- Understand the vertical slice architecture patterns
 
 ### Understand Intent
 
@@ -89,9 +89,10 @@ For each file in scope, check:
 | Category | Check |
 |----------|-------|
 | **Correctness** | Does the code work as intended? |
-| **Type Safety** | Are types explicit, no implicit `any`? |
-| **Patterns** | Does it follow existing codebase patterns? |
-| **Error Handling** | Are errors handled appropriately? |
+| **Type Safety** | Full type annotations, no `Any` without justification? |
+| **Patterns** | Follows vertical slice architecture? |
+| **Error Handling** | Custom exceptions, structured logging on failures? |
+| **Async** | Proper async/await with SQLAlchemy 2.0 style? |
 | **Tests** | Are there tests for this code? |
 
 ### Categorize Issues
@@ -110,14 +111,17 @@ For each file in scope, check:
 Run automated checks:
 
 ```bash
-# Type check
-pnpm run build
-
 # Lint
-pnpm run lint
+uv run ruff check .
+
+# Type check (MyPy strict)
+uv run mypy app/
+
+# Type check (Pyright strict)
+uv run pyright app/
 
 # Tests
-pnpm test
+uv run pytest -v
 ```
 
 ---
@@ -160,8 +164,9 @@ mkdir -p .agents/reviews
 
 | Check | Status |
 |-------|--------|
-| Type Check | {PASS/FAIL} |
-| Lint | {PASS/FAIL} |
+| Ruff lint | {PASS/FAIL} |
+| MyPy | {PASS/FAIL} |
+| Pyright | {PASS/FAIL} |
 | Tests | {PASS/FAIL} |
 
 ## What's Good
@@ -201,8 +206,9 @@ gh pr review {NUMBER} --comment --body-file .agents/reviews/pr-{NUMBER}-review.m
 
 | Check | Result |
 |-------|--------|
-| Type Check | {PASS/FAIL} |
-| Lint | {PASS/FAIL} |
+| Ruff lint | {PASS/FAIL} |
+| MyPy | {PASS/FAIL} |
+| Pyright | {PASS/FAIL} |
 | Tests | {PASS/FAIL} |
 
 ### Report

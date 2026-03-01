@@ -84,7 +84,8 @@ git status
 **After EVERY file change:**
 
 ```bash
-pnpm run build
+uv run mypy app/
+uv run pyright app/
 ```
 
 **If it fails:**
@@ -96,8 +97,8 @@ pnpm run build
 ### 3.4 Track Progress
 
 ```
-Task 1: CREATE src/x.ts ✅
-Task 2: UPDATE src/y.ts ✅
+Task 1: CREATE app/feature/models.py ✅
+Task 2: CREATE app/feature/schemas.py ✅
 ```
 
 **If you deviate from the plan**, document what changed and why.
@@ -109,14 +110,20 @@ Task 2: UPDATE src/y.ts ✅
 ### Run All Checks
 
 ```bash
-# Type check
-pnpm run build
-
 # Lint
-pnpm run lint
+uv run ruff check .
+
+# Format
+uv run ruff format --check .
+
+# Type check (MyPy strict)
+uv run mypy app/
+
+# Type check (Pyright strict)
+uv run pyright app/
 
 # Tests
-pnpm test
+uv run pytest -v
 ```
 
 **All must pass with zero errors.**
@@ -127,6 +134,7 @@ You MUST write tests for new code:
 - Every new function needs at least one test
 - Edge cases need tests
 - Update existing tests if behavior changed
+- Use `@pytest.mark.integration` for tests requiring real database
 
 **If tests fail:**
 1. Determine: bug in implementation or test?
@@ -160,23 +168,25 @@ mkdir -p .agents/reports
 
 | # | Task | File | Status |
 |---|------|------|--------|
-| 1 | {description} | `src/x.ts` | ✅ |
-| 2 | {description} | `src/y.ts` | ✅ |
+| 1 | {description} | `app/feature/models.py` | ✅ |
+| 2 | {description} | `app/feature/schemas.py` | ✅ |
 
 ## Validation Results
 
 | Check | Result |
 |-------|--------|
-| Type check | ✅ |
-| Lint | ✅ |
+| Ruff lint | ✅ |
+| Ruff format | ✅ |
+| MyPy | ✅ |
+| Pyright | ✅ |
 | Tests | ✅ ({N} passed) |
 
 ## Files Changed
 
 | File | Action | Lines |
 |------|--------|-------|
-| `src/x.ts` | CREATE | +{N} |
-| `src/y.ts` | UPDATE | +{N}/-{M} |
+| `app/feature/models.py` | CREATE | +{N} |
+| `app/feature/schemas.py` | CREATE | +{N} |
 
 ## Deviations from Plan
 
@@ -186,7 +196,7 @@ mkdir -p .agents/reports
 
 | Test File | Test Cases |
 |-----------|------------|
-| `src/x.test.ts` | {list} |
+| `app/feature/tests/test_service.py` | {list} |
 ```
 
 ### Archive Plan
@@ -211,8 +221,10 @@ mv {plan-path} .agents/plans/completed/
 
 | Check | Result |
 |-------|--------|
-| Type check | ✅ |
-| Lint | ✅ |
+| Ruff lint | ✅ |
+| Ruff format | ✅ |
+| MyPy | ✅ |
+| Pyright | ✅ |
 | Tests | ✅ |
 
 ### Files Changed
@@ -243,7 +255,7 @@ mv {plan-path} .agents/plans/completed/
 
 | Failure | Action |
 |---------|--------|
-| Type check fails | Read error, fix issue, re-run |
+| MyPy/Pyright fails | Read error, fix type issue, re-run |
 | Tests fail | Fix implementation or test, re-run |
-| Lint fails | Run `pnpm run lint --fix`, then manual fixes |
-| Build fails | Check error output, fix and re-run |
+| Ruff lint fails | Run `uv run ruff check --fix .`, then manual fixes |
+| Ruff format fails | Run `uv run ruff format .` |

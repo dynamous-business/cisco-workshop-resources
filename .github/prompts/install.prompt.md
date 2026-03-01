@@ -1,5 +1,5 @@
 ---
-description: "Install dependencies and run both server and client"
+description: "Install dependencies and start the development server"
 agent: "agent"
 tools:
   - runInTerminal
@@ -12,24 +12,24 @@ tools:
 
 Think through each step carefully to ensure nothing is missed.
 
-### Server
+### Database
 
-1. Navigate to server: `cd server`
-2. Install dependencies: `pnpm install`
-3. Start API server (in background): `pnpm dev &`
-4. Wait for server to start: `sleep 3`
-5. Verify API is running: `curl http://localhost:3001/api/flags`
+1. Start PostgreSQL: `docker-compose up -d`
+2. Wait for database to start: `sleep 3`
+3. Verify database is running: `docker-compose ps`
 
-### Client
+### Application
 
-1. Navigate to client: `cd client`
-2. Install dependencies: `pnpm install`
-3. Start dev server (in background): `pnpm dev &`
-4. Verify client is running at http://localhost:3000
+1. Install dependencies: `uv sync`
+2. Copy environment config: `cp .env.example .env` (if `.env` doesn't exist)
+3. Run database migrations: `uv run alembic upgrade head`
+4. Start dev server (in background): `uv run uvicorn app.main:app --reload --port 8123 &`
+5. Wait for server to start: `sleep 3`
+6. Verify API is running: `curl http://localhost:8123/health`
 
 ## Report
 
 Output what you've done in a concise bullet point list:
-- Server: http://localhost:3001, API response
-- Client: http://localhost:3000
+- Database: PostgreSQL via Docker
+- API: http://localhost:8123, health check response
 - Any issues encountered
