@@ -65,7 +65,19 @@ Prompt files live in `.github/prompts/` and become slash commands in Copilot Cha
 | [`/prime-server`](./.github/prompts/prime-server.prompt.md) | Load backend context |
 | [`/prime-components`](./.github/prompts/prime-components.prompt.md) | Learn component patterns |
 | [`/prime-endpoint`](./.github/prompts/prime-endpoint.prompt.md) | Learn end-to-end endpoint patterns |
+| [`/investigate-debug`](./.github/prompts/investigate-debug.prompt.md) | Investigate a GitHub issue or problem, create plan, post to GitHub |
+| [`/implement-fix`](./.github/prompts/implement-fix.prompt.md) | Implement a fix from investigation artifact, create PR, self-review |
 | [`/install`](./.github/prompts/install.prompt.md) | Install project dependencies |
+
+#### Custom Agents (Subagents)
+
+Custom agents live in `.github/agents/`. Some are subagent-only (used by prompt files in isolated context), others are directly invocable.
+
+| Agent | Description |
+|-------|-------------|
+| [`codebase-explorer`](./.github/agents/codebase-explorer.agent.md) | Finds WHERE code lives - locates files, maps structure, extracts patterns |
+| [`codebase-analyst`](./.github/agents/codebase-analyst.agent.md) | Analyzes HOW code works - traces data flow, maps integration points |
+| [`web-researcher`](./.github/agents/web-researcher.agent.md) | Searches the web for docs, APIs, and best practices with citations |
 
 #### Skills
 
