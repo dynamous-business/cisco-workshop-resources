@@ -1,4 +1,4 @@
-# Cisco Agentic Engineering Workshop
+# Acacia Agentic Engineering Workshop
 
 **AI-Assisted Development for Enterprise Teams**
 
@@ -27,7 +27,7 @@ This workshop teaches you how to build that system. You'll create an "AI Layer" 
 
 ### Presentation
 
-- [`cisco-workshop-slides.pptx`](./cisco-workshop-slides.pptx) - Main workshop presentation (50 slides)
+- [`acacia-workshop-slides.pptx`](./acacia-workshop-slides.pptx) - Main workshop presentation (50 slides)
 
 ### Diagrams
 
